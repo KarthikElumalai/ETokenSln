@@ -8,6 +8,8 @@ using EToken.Models;
 
 namespace EToken.Controllers
 {
+
+    //This is a home page controller
     public class HomeController : Controller
     {
         public IActionResult Index()
