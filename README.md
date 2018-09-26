@@ -9,7 +9,7 @@ Scope of the Project: Generating the Token System for wherever there is a queue 
 How it can help the people:  They can get the token from wherever in the world by just using the browser. 
 It can avoid the traditional writing and phone call token system and save money.
 
-Technology Involved: Asp.net Core and Xamrin for Mobile App
+Technology Involved: Visual studio 15.8.5,Asp.net Core 2.1 and Xamrin for Mobile App
 
 Domain: Can be used in Multiple Places (Ex Clinical, Bank counter, Ration shop, salon shop... etc.)
 
