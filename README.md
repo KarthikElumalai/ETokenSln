@@ -4,7 +4,7 @@ This Application is used to Generate Token system
 
 Name of the Project: EToken
 
-Scope of the Project: Generating the Token System for wherever there is a queue based system.
+Scope of the Project: Generate a online Token to avoid long queue and save our precious time
 
 How it can help the people:  They can get the token from wherever in the world by just using the browser. 
 It can avoid the traditional writing and phone call token system and save money.
