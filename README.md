@@ -1,5 +1,5 @@
 # ETokenSln
-This Application is used to Generate Token system
+Etoken is used to Generate a online Token to avoid long queue and save our precious time
 
 
 Name of the Project: EToken
