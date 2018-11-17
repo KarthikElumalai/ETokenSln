@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EToken.Models;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace EToken.Controllers
 {
@@ -16,6 +18,28 @@ namespace EToken.Controllers
         {
             return View();
         }
+
+        public async Task<ActionResult> ValidateUser()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44359/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync("api/Login/sachn"); //API controller name
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<string>();
+                    if (result != null)
+                        return Content(result);
+                  
+                }
+            }
+
+            return View("Return your model here");
+        }
+
 
         public IActionResult About()
         {
