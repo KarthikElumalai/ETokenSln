@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EToken.Controllers
 {
+    /// <summary>
+    /// This is admin page controller
+    /// </summary>
     public class AdminController : Controller
     {
         public IActionResult Index()
