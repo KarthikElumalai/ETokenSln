@@ -1,13 +1,32 @@
-# ETokenSln
-Etoken is used to Generate a online Token to avoid long queue and save our precious time
+
+E-Token:
+
+	E-Token is an online queue system which reduces waiting time on queue, by providing live update about queue status in electronic gadgets.
+  
+	E-Token will generate a token that helps to keep track of the queue from anywhere in the world using internet.
+  
+	In E-Token We have a features such as provide a token, view a token status,  update a token, cancel a token, delete a token and many more. With these feature we can easily manage the online queue system in any suitable domain without any hassle.
 
 
-Name of the Project: EToken
+What Can I do with E-Token?
 
-Scope of the Project: Generate a online Token to avoid long queue and save our precious time
+         	Provide live and accurate queue information
+         	Inform your customers of emergency off or delays with a single click
+          Get Customer Feedbacks
+            
+Why E-Token?
 
-How it can help the people:  They can get the token from wherever in the world by just using the browser. 
-It can avoid the traditional writing and phone call token system and save money.
+If you are losing customers, who are frustrated by waiting in your queue, then E-Token is the solution for that.
+ 
+How E-Token help my business?
+
+Features of E-Token:
+
+           Estimated wait time prediction using Artificial Intelligence (AI)
+        	Queue Management
+           Automatic Reminder and Notification system.
+       	Customer Feedback
+
 
 Technology Involved: Visual studio 15.8.5,Asp.net Core 2.1 and Xamrin for Mobile App
 
