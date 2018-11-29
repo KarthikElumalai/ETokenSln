@@ -8,6 +8,11 @@ namespace EToken.DataContext
 {
     public class ETokenDBContext : DbContext
     {
+
+        public ETokenDBContext()
+        {
+
+        }
         public ETokenDBContext(DbContextOptions<ETokenDBContext> options)
      : base(options)
         {
@@ -16,6 +21,7 @@ namespace EToken.DataContext
         }
 
         public DbSet<EToken.Models.Customer> Customer { get; set; }
+        public DbSet<EToken.Models.Login> Login { get; set; }
 
     }
 }

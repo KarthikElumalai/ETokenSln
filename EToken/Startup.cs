@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EToken.DataContext;
+using EToken.Models;
+using EToken.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -34,12 +36,18 @@ namespace EToken
             });
 
 
+            services.AddScoped<ETokenGenericRepository<Customer>>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            // Add framework services.
+            services.AddMvc().AddControllersAsServices();
 
             //Here only we need to add a service for Etoken Connection to the DB
+
+            //Important Note : Connection String is specified in the appsettings.json file..
             services.AddDbContext<ETokenDBContext>(options =>
                   options.UseSqlServer(Configuration.GetConnectionString("ETokenDBContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

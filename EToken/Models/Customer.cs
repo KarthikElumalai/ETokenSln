@@ -13,4 +13,6 @@ namespace EToken.Models
         public Int64 CustomerPhoneNumber { get; set; }
 
     }
+
+
 }

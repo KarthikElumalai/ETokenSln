@@ -4,31 +4,31 @@ using System.Linq;
 using System.Threading.Tasks;
 using EToken.DataContext;
 using EToken.Models;
+using EToken.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EToken.Controllers
 {
     public class CustomerController : Controller
     {
-        //checking By Giri
 
-        private readonly ETokenDBContext _OBJETokenDBContext;
-
-        public CustomerController(ETokenDBContext OBJETokenDBContext)
+        ETokenGenericRepository<Customer> OBJETokenGenericRepository;
+        public CustomerController(ETokenGenericRepository<Customer> _OBJETokenGenericRepository)
         {
-            _OBJETokenDBContext = OBJETokenDBContext;
+            OBJETokenGenericRepository = _OBJETokenGenericRepository;
         }
-
 
         // GET: Customer/Create
         public IActionResult Create()
         {
+
+           
             return View();
         } //End of public IActionResult Create()
 
 
 
-        // POST: Customer/Create
+        //  POST: Customer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Customer invCustomer)
@@ -41,9 +41,9 @@ namespace EToken.Controllers
 
                 //Generating the next token no and saving for the customer
                 //currently the logic getting the total no of customer and adding one, it may change in future if required
-                invCustomer.CustomerTokenNumber = _OBJETokenDBContext.Customer.Count() + 1;
-                _OBJETokenDBContext.Add(invCustomer);
-                await _OBJETokenDBContext.SaveChangesAsync();
+                invCustomer.CustomerTokenNumber = await OBJETokenGenericRepository.GetTotalCountForAnyTypeListAsync() + 1;
+                await OBJETokenGenericRepository.AddAnyTpyeAsync(invCustomer);
+
                 return View("CreateConfirmation", invCustomer);
             } //End of  if (ModelState.IsValid)
             return View(invCustomer);

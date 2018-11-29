@@ -27,7 +27,7 @@ namespace EToken.Controllers
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync("api/Login/sachn"); //API controller name
+                HttpResponseMessage response = await client.GetAsync("api/Login/sachin"); //API controller name
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsAsync<string>();
