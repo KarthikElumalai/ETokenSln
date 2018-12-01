@@ -10,9 +10,7 @@ namespace EToken.Models
     {
 
          [Key]
-         public int PrimaryKeyID { get; set; }
+         public int ID { get; set; }
          public string CustomerPhoneNumber { get; set; }
-         public DateTime? DateDataCreated { get; set; }
-
     }
 }

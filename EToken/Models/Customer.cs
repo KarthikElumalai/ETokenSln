@@ -7,10 +7,10 @@ namespace EToken.Models
 {
     public class Customer : ATEStampState
     {
-        public Guid CustomerID { get; set; }
-        public Int32 CustomerTokenNumber { get; set; }
-        public string CustomerName { get; set; }
-        public Int64 CustomerPhoneNumber { get; set; }
+        private Guid CustomerID { get; set; }
+        private Int32 CustomerTokenNumber { get; set; }
+        private string CustomerName { get; set; }
+        private Int64 CustomerPhoneNumber { get; set; }
 
     }
 

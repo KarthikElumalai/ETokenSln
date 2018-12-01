@@ -16,7 +16,7 @@ namespace EToken.ApplicationFacede
     public class ApplicationFacade
     {
         //Will Recieve the customer phone number from controller and out the otp to the controller
-        static string SendOTP(Login login,out int otpValue)
+        public string SendOTP(Login login,out int otpValue)
         {
             otpValue = new Random().Next(100000, 999999);
             string APIKey = "";
@@ -37,7 +37,6 @@ namespace EToken.ApplicationFacede
                     string result = System.Text.Encoding.UTF8.GetString(response);
                     var jsonObject = JObject.Parse(result);
                     status = jsonObject["status"].ToString();
-
                 }
                 return status;
             }
@@ -47,7 +46,7 @@ namespace EToken.ApplicationFacede
             }
         }
         //This will get the sessionOtp and the otp entered by the user and send the result
-        static bool VerifyOTP(string otp,string sessionOtp)
+        public bool VerifyOTP(string otp,string sessionOtp)
         {
             bool result = false;
             if (otp == sessionOtp)
