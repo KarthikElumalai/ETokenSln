@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EToken.Models
 {
-    public class Customer
+    public class Customer : ATEStampState
     {
         public Guid CustomerID { get; set; }
         public Int32 CustomerTokenNumber { get; set; }

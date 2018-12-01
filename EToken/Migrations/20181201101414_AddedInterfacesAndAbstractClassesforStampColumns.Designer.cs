@@ -4,14 +4,16 @@ using EToken.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EToken.Migrations
 {
     [DbContext(typeof(ETokenDBContext))]
-    partial class ETokenDBContextModelSnapshot : ModelSnapshot
+    [Migration("20181201101414_AddedInterfacesAndAbstractClassesforStampColumns")]
+    partial class AddedInterfacesAndAbstractClassesforStampColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

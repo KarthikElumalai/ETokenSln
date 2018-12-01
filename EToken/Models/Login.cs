@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EToken.Models
 {
-    public class Login
+    public class Login : ATEStampState
     {
 
          [Key]

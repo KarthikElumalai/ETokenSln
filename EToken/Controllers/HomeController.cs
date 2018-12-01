@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using EToken.Models;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using EToken.ApplicationFacede;
 
 namespace EToken.Controllers
 {
@@ -55,6 +56,13 @@ namespace EToken.Controllers
             return View();
         }
 
+
+        public void Test()
+        {
+            ApplicationFacade OBJApplicationFacade = new ApplicationFacade();
+        
+
+        } //End of public ActionResult Test()
         public IActionResult Privacy()
         {
             return View();

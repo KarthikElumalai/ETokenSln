@@ -42,6 +42,8 @@ namespace EToken.Controllers
                 //Generating the next token no and saving for the customer
                 //currently the logic getting the total no of customer and adding one, it may change in future if required
                 invCustomer.CustomerTokenNumber = await OBJETokenGenericRepository.GetTotalCountForAnyTypeListAsync() + 1;
+                invCustomer.CreatedBy = invCustomer.CustomerName;
+                invCustomer.CreatedDate = DateTime.Now;
                 await OBJETokenGenericRepository.AddAnyTpyeAsync(invCustomer);
 
                 return View("CreateConfirmation", invCustomer);
