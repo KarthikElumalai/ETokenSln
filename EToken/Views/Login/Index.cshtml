@@ -5,9 +5,9 @@
     // Layout = null;
 }
 
-<div>
-    @Html.TextBoxFor(m => m.CustomerPhoneNumber, new { @class = "form-control",@id="phoneNumber" })
-    <a href="#" class="btn btn-success" onclick="SendOTP()">Send OTP</a>
+<div style="margin-top:10px;">
+    <label>Enter Phone Number: </label>@Html.TextBoxFor(m => m.CustomerPhoneNumber, new { @class = "form-control",@id="phoneNumber" ,@style="width:200px"})
+    <a style="margin-top:10px;" href="#" class="btn btn-success" onclick="SendOTP()">Send OTP</a>
 
 </div>
 

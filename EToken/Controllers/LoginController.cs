@@ -6,11 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using EToken.ApplicationFacede;
 using EToken.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 
 namespace EToken.Controllers
 {
     public class LoginController : Controller
     {
+        IConfiguration _iconfiguration;
+        public LoginController(IConfiguration iconfiguration)
+        {
+            _iconfiguration = iconfiguration;
+        }
         ApplicationFacade appFacade = new ApplicationFacade();
         Login login = new Login();
         public IActionResult Index()
@@ -24,7 +30,8 @@ namespace EToken.Controllers
             if (!string.IsNullOrEmpty(phoneNumber))
             {
                 login.CustomerPhoneNumber = phoneNumber;
-                status = appFacade.SendOTP(login, out otpValue);
+                var apiKey = _iconfiguration["APIKEY"];
+                status = appFacade.SendOTP(login, apiKey,out otpValue);
                 HttpContext.Session.SetString("sessionotp", otpValue.ToString());
                 return Json(status);
             }

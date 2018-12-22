@@ -37,7 +37,7 @@ namespace EToken
             services.AddMvc();
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
             services.AddSession();
-
+            services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped<ETokenGenericRepository<Customer>>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
