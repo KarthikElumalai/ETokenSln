@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EToken.ApplicationFacede;
 using EToken.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace EToken.Controllers
 {
@@ -16,12 +17,21 @@ namespace EToken.Controllers
         {
             return View();
         }
-        public JsonResult SendOtp(Login login)
+        public JsonResult SendOtp(string phoneNumber = null)
         {
             int otpValue = 0;
-            string status = appFacade.SendOTP(login,out otpValue);
-            TempData["OtpValue"] = otpValue;
-            return Json(status);
+            string status = null;
+            if (!string.IsNullOrEmpty(phoneNumber))
+            {
+                login.CustomerPhoneNumber = phoneNumber;
+                status = appFacade.SendOTP(login, out otpValue);
+                HttpContext.Session.SetString("sessionotp", otpValue.ToString());
+                return Json(status);
+            }
+            else
+            {
+                return Json(false);
+            }    
         }
         public ActionResult EnterOTP()
         {
@@ -29,8 +39,8 @@ namespace EToken.Controllers
         }
         public JsonResult VerifyOtp(string otp)
         {
-            string tempDataOtp = TempData["OtpValue"].ToString();
-            bool result = appFacade.VerifyOTP(otp, tempDataOtp);
+            string sessionOTP = HttpContext.Session.GetString("sessionotp");
+            bool result = appFacade.VerifyOTP(otp, sessionOTP);
             return Json(result);
         }
 

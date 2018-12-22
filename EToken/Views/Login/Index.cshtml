@@ -1,0 +1,40 @@
+﻿@model EToken.Models.Login
+
+@{
+    ViewBag.Title = "Index";
+    // Layout = null;
+}
+
+<div>
+    @Html.TextBoxFor(m => m.CustomerPhoneNumber, new { @class = "form-control",@id="phoneNumber" })
+    <a href="#" class="btn btn-success" onclick="SendOTP()">Send OTP</a>
+
+</div>
+
+<script>
+
+
+    var SendOTP = function () {
+
+        $.ajax({
+            url: "/Login/SendOTP",
+            type: "post",
+            data: { 'phoneNumber': $("#phoneNumber").val() },
+            success: function (data) {
+                if (data == "success") {
+
+                    alert("OTP sent successfully");
+                    window.location = "/Login/EnterOTP";
+                }
+                else {
+                    alert("failed");
+                }
+            }
+
+
+        })
+
+    };
+
+</script>
+
