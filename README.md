@@ -1,8 +1,12 @@
-Project live url :http://etokensolution.azurewebsites.net/
+#Important Links:
+
+**Project live url :** http://etokensolution.azurewebsites.net/
 
 **Application Flow:** https://github.com/KarthikElumalai/ETokenSln/wiki/Application-Flow-for-EToken
 
-**Database Design :** https://github.com/KarthikElumalai/ETokenSln/issues/17
+**Database Design:**  https://github.com/KarthikElumalai/ETokenSln/issues/17
+
+[EToken UML Diagrams](https://github.com/KarthikElumalai/ETokenSln/issues/23)
 
 **What is E-Token?**
 
