@@ -4,7 +4,7 @@
 
 **Application Flow:** https://github.com/KarthikElumalai/ETokenSln/wiki/Application-Flow-for-EToken
 
-**Database Design:**  https://github.com/KarthikElumalai/ETokenSln/issues/17
+**Database Design:**  https://github.com/KarthikElumalai/ETokenSln/issues/17 , https://github.com/KarthikElumalai/ETokenSln/wiki/Create-Database-Design-For-EToken
 
 [EToken UML Diagrams](https://github.com/KarthikElumalai/ETokenSln/issues/23)
 
