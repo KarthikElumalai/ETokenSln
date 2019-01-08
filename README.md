@@ -2,6 +2,8 @@ Project live url :http://etokensolution.azurewebsites.net/
 
 **Application Flow:** https://github.com/KarthikElumalai/ETokenSln/wiki/Application-Flow-for-EToken
 
+**Database Design :** https://github.com/KarthikElumalai/ETokenSln/issues/17
+
 **What is E-Token?**
 
 - E-Token is an online queue system which reduces waiting time on queue, by providing live update about queue status in electronic gadgets.
