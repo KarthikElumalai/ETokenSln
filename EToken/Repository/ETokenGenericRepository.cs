@@ -11,7 +11,7 @@ namespace EToken.Repository
     {
 
 
-        // Creating object like because it solves the dependency injection problem
+        // Creating object like below, because it solves the dependency injection problem
         //For More details :https://github.com/aspnet/EntityFrameworkCore/issues/6493
 
 

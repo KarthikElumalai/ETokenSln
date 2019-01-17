@@ -6,9 +6,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Customer\Create.cshtml" />
+    <Content Remove="Views\Customer\CreateConfirmation.cshtml" />
+    <Content Remove="Views\Login\EnterOtp.cshtml" />
+    <Content Remove="Views\Login\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Customer\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
 
 </Project>
