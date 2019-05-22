@@ -39,7 +39,7 @@ namespace EToken.DataContext
 
 
 
-        } // End of override void OnModelCreating(ModelBuilder modelBuilder)
+        } // End of override void OnModelCreating(ModelBuilde)
 
 
     } //End of E-TokenDbContext class
