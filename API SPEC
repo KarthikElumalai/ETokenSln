@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EToken.API</name>
+    </assembly>
+    <members>
+        <member name="M:EToken.API.Controllers.UsersController.Authenticate(EToken.Infrustructure.Resource.UserResource)">
+            <summary>
+            Authenticate a user Resource
+            </summary>
+            <param name="userResource">Inject a UserResource</param>
+            <returns>Returns username,firstname,lastname and token string</returns>
+        </member>
+        <member name="M:EToken.API.Controllers.UsersController.Register(EToken.Infrustructure.Resource.UserResource)">
+            <summary>
+            Create a User Resource
+            </summary>
+            <param name="userResource">Inject a user Resource from client</param>
+            <returns>Inject a User Resource</returns>
+        </member>
+        <member name="M:EToken.API.Controllers.UsersController.GetAll">
+            <summary>
+            Get all the resources 
+            </summary>
+            <returns>Returns the resource in User Resource Format</returns>
+        </member>
+        <member name="M:EToken.API.Controllers.UsersController.GetById(System.Int32)">
+            <summary>
+            Get a single user resource by userResource ID
+            </summary>
+            <param name="id"></param>
+            <returns>User Resource</returns>
+        </member>
+        <member name="M:EToken.API.Controllers.UsersController.Update(System.Int32,EToken.Infrustructure.Resource.UserResource)">
+            <summary>
+            Updates a User Resource
+            </summary>
+            <param name="id">Integer</param>
+            <param name="userResource">Inject User Resource</param>
+            <returns>Returns the updated resource</returns>
+        </member>
+        <member name="M:EToken.API.Controllers.UsersController.Delete(System.Int32)">
+            <summary>
+            Deletes a User Resource
+            </summary>
+            <param name="id">Id</param>
+            <returns>User Resource</returns>
+        </member>
+    </members>
+</doc>
