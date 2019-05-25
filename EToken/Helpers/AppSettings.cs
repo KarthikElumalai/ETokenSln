@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EToken.Resource
+namespace EToken.API.Helpers
 {
-    public class ETokenMessageKeys
+    public class AppSettings
     {
+        public string Secret{ get; set; }
     }
 }
