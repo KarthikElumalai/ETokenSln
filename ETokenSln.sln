@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EToken", "EToken\EToken.csproj", "{560587B1-E013-4EF5-9492-EEE2546FFC45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EToken.API", "EToken\EToken.API.csproj", "{560587B1-E013-4EF5-9492-EEE2546FFC45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EToken.Infrustructure", "EToken.Infrustructure\EToken.Infrustructure.csproj", "{2B255EC6-F2B4-4735-9525-2E5E5CECFCCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EToken.Core", "EToken.Core\EToken.Core.csproj", "{99F48C73-AA27-44A1-A88E-6ED027D2F400}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{560587B1-E013-4EF5-9492-EEE2546FFC45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{560587B1-E013-4EF5-9492-EEE2546FFC45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{560587B1-E013-4EF5-9492-EEE2546FFC45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B255EC6-F2B4-4735-9525-2E5E5CECFCCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B255EC6-F2B4-4735-9525-2E5E5CECFCCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B255EC6-F2B4-4735-9525-2E5E5CECFCCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B255EC6-F2B4-4735-9525-2E5E5CECFCCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99F48C73-AA27-44A1-A88E-6ED027D2F400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99F48C73-AA27-44A1-A88E-6ED027D2F400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99F48C73-AA27-44A1-A88E-6ED027D2F400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F48C73-AA27-44A1-A88E-6ED027D2F400}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
