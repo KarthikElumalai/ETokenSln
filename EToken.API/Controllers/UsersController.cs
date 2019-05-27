@@ -17,6 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 using EToken.API.Extensions;
 using EToken.Core.Model;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.Extensions.Logging;
 
 namespace EToken.API.Controllers
 {
@@ -27,15 +28,18 @@ namespace EToken.API.Controllers
         private IUserService _userService;
         private IMapper _mapper;
         private readonly AppSettings _appSettings;
+        private readonly ILogger<UsersController> _logger;
 
         public UsersController(
             IUserService userService
             ,IMapper mapper
-            ,IOptions<AppSettings> appSetting)
+            ,IOptions<AppSettings> appSetting
+            ,ILogger<UsersController> logger)
         {
             _userService = userService;
             _mapper = mapper;
             _appSettings = appSetting.Value;
+            _logger = logger;
         }
         /// <summary>
         /// Authenticate a user Resource
@@ -48,11 +52,15 @@ namespace EToken.API.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
+            _logger.LogInformation("Could break here");
             var user = await _userService.Authenticate(userResource.Username, userResource.Password);
 
             if (user == null)
+            {
+                _logger.LogCritical("Username or password is incorrect");
                 return BadRequest(new { message = "Username or password is incorrect" });
-
+            }
+                
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -66,7 +74,7 @@ namespace EToken.API.Controllers
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
-
+            _logger.LogInformation("Token {tokenString} Generated");
             // return basic user info (without password) and token to store client side
             return Ok(new
             {
@@ -102,6 +110,7 @@ namespace EToken.API.Controllers
             }
             catch (AppExceptions ex)
             {
+                _logger.LogError(ex, "It Broke");
                 // return error message if there was an exception
                 return BadRequest(new { message = ex.Message });
             }
@@ -150,12 +159,17 @@ namespace EToken.API.Controllers
                 // save 
                 var result = await _userService.UpdateAsync(user, userResource.Password);
                 if (!result.Success)
+                {
+                    _logger.LogCritical("Update Service failed");
                     return BadRequest(result.Message);
+                }
+                    
                 var userData = _mapper.Map<User, UserResource>(result.user);
                 return Ok(userData);
             }
             catch (AppExceptions ex)
             {
+                _logger.LogError(ex, "It Broke");
                 // return error message if there was an exception
                 return BadRequest(new { message = ex.Message });
             }
@@ -170,7 +184,10 @@ namespace EToken.API.Controllers
         {
             var result = await _userService.DeleteAsync(id);
             if (!result.Success)
+            {
+                _logger.LogCritical("Could not delete the resource");
                 return BadRequest(result.Message);
+            }
             var userResource = _mapper.Map<User, UserResource>(result.user);
             return Ok(userResource);
         }

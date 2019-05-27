@@ -24,6 +24,7 @@ using System.Reflection;
 using System.IO;
 using EToken.Infrustructure.Persistence.Repositories;
 using EToken.Core.Repositories;
+using Serilog;
 
 namespace EToken.API
 {
@@ -31,6 +32,8 @@ namespace EToken.API
     {
         public Startup(IConfiguration configuration)
         {
+            //Init Serilog Configuration
+            Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
             Configuration = configuration;
         }
 
@@ -39,7 +42,6 @@ namespace EToken.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddCors();
             services.AddDbContext<ETokenDBContext>(x => x.UseInMemoryDatabase("TestDb"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -115,7 +117,7 @@ namespace EToken.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -126,6 +128,8 @@ namespace EToken.API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            //logging
+            loggerFactory.AddSerilog();
             app.UseCors(x=>x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             app.UseAuthentication();
             app.UseHttpsRedirection();
