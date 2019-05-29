@@ -43,6 +43,10 @@ namespace EToken.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            // cache in memory
+            services.AddMemoryCache();
+            // caching response for middlewares
+            services.AddResponseCaching();
             services.AddDbContext<ETokenDBContext>(x => x.UseInMemoryDatabase("TestDb"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             var config = new AutoMapper.MapperConfiguration(cfg =>
@@ -132,6 +136,7 @@ namespace EToken.API
             loggerFactory.AddSerilog();
             app.UseCors(x=>x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             app.UseAuthentication();
+            app.UseResponseCaching();
             app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();

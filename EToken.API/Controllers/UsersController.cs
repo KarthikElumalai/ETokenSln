@@ -18,6 +18,7 @@ using EToken.API.Extensions;
 using EToken.Core.Model;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace EToken.API.Controllers
 {
@@ -29,17 +30,21 @@ namespace EToken.API.Controllers
         private IMapper _mapper;
         private readonly AppSettings _appSettings;
         private readonly ILogger<UsersController> _logger;
-
+        private readonly IMemoryCache _cache;
+        private string _userListKey="UsersList";
+        private string _userKey = "User";
         public UsersController(
             IUserService userService
             ,IMapper mapper
             ,IOptions<AppSettings> appSetting
-            ,ILogger<UsersController> logger)
+            ,ILogger<UsersController> logger
+            ,IMemoryCache cache)
         {
             _userService = userService;
             _mapper = mapper;
             _appSettings = appSetting.Value;
             _logger = logger;
+            _cache = cache;
         }
         /// <summary>
         /// Authenticate a user Resource
@@ -123,8 +128,23 @@ namespace EToken.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var users = await _userService.GetAllAsync();
-            var userResources = _mapper.Map<IList<UserResource>>(users);
+            IEnumerable<User> users = new List<User>();
+            if(!_cache.TryGetValue(_userListKey,out users))
+            {
+                if(users == null)
+                {
+                    users= await _userService.GetAllAsync();
+                }
+                _cache.Set(_userListKey, users,
+                    new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(5))
+                    .SetAbsoluteExpiration(TimeSpan.FromHours(1)));
+                _logger.LogInformation($"{_userListKey} generated and set in cache.");
+            }
+            {
+                _logger.LogInformation($"{_userListKey} was available and pulled from cache.");
+            }
+            var userResources = _mapper.Map<IList<UserResource>>(users); 
             return Ok(userResources);
         }
         /// <summary>
