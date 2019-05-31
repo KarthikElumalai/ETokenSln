@@ -1,0 +1,139 @@
+swagger: '2.0'
+info:
+  version: v1
+  title: EToken Demo
+host: etoken-242204.appspot.com
+paths:
+  /api/Users/authenticate:
+    post:
+      tags:
+        - Users
+      summary: Authenticate a user Resource
+      operationId: Authenticate
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces: []
+      parameters:
+        - name: userResource
+          in: body
+          description: Inject a UserResource
+          required: false
+          schema:
+            $ref: '#/definitions/UserResource'
+      responses:
+        '200':
+          description: Success
+  /api/Users/register:
+    post:
+      tags:
+        - Users
+      summary: Create a User Resource
+      operationId: Register
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces: []
+      parameters:
+        - name: userResource
+          in: body
+          description: Inject a user Resource from client
+          required: false
+          schema:
+            $ref: '#/definitions/UserResource'
+      responses:
+        '200':
+          description: Success
+  /api/Users:
+    get:
+      tags:
+        - Users
+      summary: Get all the resources
+      operationId: GetAll
+      consumes: []
+      produces: []
+      parameters: []
+      responses:
+        '200':
+          description: Success
+  '/api/Users/{id}':
+    get:
+      tags:
+        - Users
+      summary: Get a single user resource by userResource ID
+      operationId: GetById
+      consumes: []
+      produces: []
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+    put:
+      tags:
+        - Users
+      summary: Updates a User Resource
+      operationId: Update
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces: []
+      parameters:
+        - name: id
+          in: path
+          description: Integer
+          required: true
+          type: integer
+          format: int32
+        - name: userResource
+          in: body
+          description: Inject User Resource
+          required: false
+          schema:
+            $ref: '#/definitions/UserResource'
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+        - Users
+      summary: Deletes a User Resource
+      operationId: Delete
+      consumes: []
+      produces: []
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+definitions:
+  UserResource:
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+      password:
+        type: string

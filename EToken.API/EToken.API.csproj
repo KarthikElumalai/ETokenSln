@@ -34,5 +34,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include="app.yaml" CopyToOutputDirectory="Always" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,5 @@
+runtime: aspnetcore
+env: flex
+endpoints_api_service:
+    name: etoken-242204.appspot.com
+    rollout_strategy: managed
