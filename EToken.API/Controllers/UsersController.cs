@@ -22,8 +22,10 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace EToken.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    [ApiVersion("1")]
+    [ApiVersion("2")]
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
