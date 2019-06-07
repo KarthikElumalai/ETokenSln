@@ -51,7 +51,12 @@ namespace EToken.API
             // caching response for middlewares
             services.AddResponseCaching();
             services.AddDbContext<ETokenDBContext>(x => x.UseInMemoryDatabase("TestDb"));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services
+                .AddMvc(options=> 
+                {
+                    options.Filters.Add<JsonExceptionFilter>();
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new AutoMapperProfile());
