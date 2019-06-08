@@ -28,6 +28,7 @@ using Serilog;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using EToken.API.Filters;
+using Newtonsoft.Json.Serialization;
 
 namespace EToken.API
 {
@@ -50,13 +51,24 @@ namespace EToken.API
             services.AddMemoryCache();
             // caching response for middlewares
             services.AddResponseCaching();
+            services.AddSession(opts => {
+                opts.Cookie.IsEssential = true;
+                opts.IdleTimeout = TimeSpan.FromMinutes(1);
+                opts.Cookie.HttpOnly = true;
+            });
             services.AddDbContext<ETokenDBContext>(x => x.UseInMemoryDatabase("TestDb"));
             services
                 .AddMvc(options=> 
                 {
                     options.Filters.Add<JsonExceptionFilter>();
                 })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options => {
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver
+                    {
+                        NamingStrategy = new SnakeCaseNamingStrategy()
+                    };
+                }); 
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new AutoMapperProfile());
@@ -159,13 +171,13 @@ namespace EToken.API
                     ValidateAudience = false
                 };
             });
-
+            services.AddHttpClient();
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepositories, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            
-           
+            services.AddScoped<IAuthy, Authy>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -180,6 +192,7 @@ namespace EToken.API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseSession();
             //logging
             loggerFactory.AddSerilog();
             app.UseCors(x=>x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
@@ -188,7 +201,7 @@ namespace EToken.API
             app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();
-
+            
             //This line enables Swagger UI, which provides us with a nice, simple UI with which we can view our API calls.
             app.UseSwaggerUI(c =>
             {
